@@ -1,0 +1,18 @@
+<div class="todo-container">
+    <h2>To-Do List</h2>
+    <div class="input-grop">
+        <input [(ngModel)]="newTodo" placeholder="Add a new task"/>
+        <button (click)="addTodo()">Add</button>
+    </div>
+</div>
+
+<ul>
+    <li *ngFor="let todo of todos; let i = index">
+        <input type="checkbox" [(ngModel)]="todo.isCompleted" (change)="completeTodo(i)"/>&nbsp;
+        <span *ngIf="!todo.isEditing">{{todo.task}}</span>&nbsp;
+        <input *ngIf="todo.isEditing" [(ngModel)]="todo.task" />
+        <button *ngIf="!todo.isEditing" (click)="editTodo(i)">edit</button>&nbsp;
+        <button *ngIf="todo.isEditing" (click)="saveTodo(i)">save</button>&nbsp;
+        <button (click)="removeTodo(i)">remove</button>
+    </li>
+</ul>
